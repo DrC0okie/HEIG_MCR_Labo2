@@ -1,0 +1,54 @@
+@startuml
+
+interface Displayer
+{
+	int getWidth();
+	int getHeight();
+	Graphics2D getGraphics();
+	void repaint();
+	void setTitle(String title);
+}
+
+class Display implements Displayer {
+	- {static} instance: Display
+	- {static} DEFAULT_HEIGHT: int
+	- {static} DEFAULT_WIDTH: int
+	- title: String
+	- graphics2D: Graphics2D
+	+ {static} getInstance(): Display
+}
+'constructeur privé de display ??
+
+class JPanel 
+
+class App {
+	- {static} NB_CIRCLES: int
+	- {static} NB_SQUARES: int
+	show(nb_circles:int, nb_squares: int): void
+
+}
+
+
+App -> Display: shows
+Display *- JFrame
+Display *-- JPanel
+
+'abstract
+class Shape {
+	-position: Point
+	-moveVector: Point
+	-color: Color
+	+{abstract} paint(): void
+}
+
+class Circle extends Shape {
+	-radius: int
+}
+
+class Square extends Shape {
+	-size: int
+}
+
+
+
+@enduml
