@@ -30,24 +30,32 @@ class App {
 
 
 App -> Display: shows
-Display *- JFrame
-Display *-- JPanel
+Display *-JFrame
+Display *--JPanel
 
-'abstract
-class Shape {
-	-position: Point
-	-moveVector: Point
-	-color: Color
+
+abstract class Shape {
+	- position: Point
+	- moveVector: Point
+    ' remove color
+	- color: Color
 	+{abstract} paint(): void
 }
 
 class Circle extends Shape {
-	-radius: int
+	- radius: int
 }
 
 class Square extends Shape {
-	-size: int
+	- size: int
 }
+
+'todo: reprendre les interfaces de la consigne 2
+'todo: appliquer le pattern factory et abstract factory
+'todo: comment ne pas avoir plusieurs instances de renderer ?
+
+'note: c'est la pièce qui sait quel est le renderer adapté, il pourrait y avoir une pièce getRenderer().
+
 
 
 
