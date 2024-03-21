@@ -1,3 +1,5 @@
+package singleton;
+
 public class Square extends Shape {
     int size;
 

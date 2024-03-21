@@ -1,3 +1,5 @@
+package singleton;
+
 import javax.swing.text.Position;
 
 public class Shape {
