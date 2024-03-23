@@ -9,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class App {
     private final static int EXIT_KEY = KeyEvent.VK_Q;
@@ -16,13 +17,13 @@ public class App {
     private final static int ADD_FILLED_KEY = KeyEvent.VK_F;
     private final static int ADD_BORDERED_KEY = KeyEvent.VK_B;
     private final static int ADD_QTY = 10;
-    private final static int MIN_DIAMETER = 5;
-    private final static int MAX_DIAMETER = 30;
-
-    // LinkedBlockingQueue is thread-safe that is why we don't use LinkedList
+    private final static int MAX_SIZE = 30;
+    private final static int MIN_SIZE = 5;
     private final LinkedList<Bouncable> bouncers = new LinkedList<>();
+    private static Random random;
 
     public App() {
+        random = new Random();
         Display display = Display.getInstance();
         display.setTitle("Bouncers");
         display.addKeyListener(new KeyAdapter() {
@@ -36,10 +37,10 @@ public class App {
                         bouncers.clear();
                         break;
                     case ADD_BORDERED_KEY:
-                        addBouncers(new BorderedFactory(), ADD_QTY);
+                        addBouncers(new BorderedFactory());
                         break;
                     case ADD_FILLED_KEY:
-                        addBouncers(new FilledFactory(), ADD_QTY);
+                        addBouncers(new FilledFactory());
                         break;
                 }
             }
@@ -54,21 +55,23 @@ public class App {
      * Add new bouncers to the simulation
      *
      * @param factory factory to use for shapes creation
-     * @param count   number of shapes to create
      */
-    private void addBouncers(AbstractShapeFactory factory, int count) {
+    private void addBouncers(AbstractShapeFactory factory) {
         Display display = Display.getInstance();
-        for (int i = 0; i < count; ++i) {
-            bouncers.add(factory.createCircle(
-                    (int) (Math.random() * (MAX_DIAMETER - MIN_DIAMETER)) + MIN_DIAMETER,
-                    new Point2D.Double((Math.random() * display.getWidth()), (Math.random() * display.getHeight())))
-            );
-
-            bouncers.add(factory.createSquare(
-                    (int) (Math.random() * (MAX_DIAMETER - MIN_DIAMETER)) + MIN_DIAMETER,
-                    new Point2D.Double((Math.random() * display.getWidth()), (Math.random() * display.getHeight())))
-            );
+        for (int i = 0; i < ADD_QTY; ++i) {
+            bouncers.add(factory.createCircle(getRandomPoint(display), getRandomSize(display)));
+            bouncers.add(factory.createSquare(getRandomPoint(display), getRandomSize(display)));
         }
+    }
+
+    static private Point2D.Double getRandomPoint(Display display){
+        double x = Math.random() * display.getWidth();
+        double y = Math.random() * display.getHeight();
+        return new Point2D.Double(x, y);
+    }
+
+    static private int getRandomSize(Display display){
+        return random.nextInt(MAX_SIZE - MIN_SIZE) + MIN_SIZE;
     }
 
     /**
