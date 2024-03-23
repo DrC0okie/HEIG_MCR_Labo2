@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 public abstract class Square extends AbstractShape {
-    protected Square(int size, Point2D.Double position, Renderer renderer) {
+    protected Square(Point2D.Double position, int size, Renderer renderer) {
         super(new Rectangle2D.Double(position.x, position.y, size, size), renderer);
     }
 
@@ -17,6 +17,6 @@ public abstract class Square extends AbstractShape {
 
     @Override
     public void move() {
-        // Check collision and move
+        // TODO: Check the collision with the frame border and move the boucable accordingly
     }
 }

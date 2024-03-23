@@ -12,12 +12,12 @@ import java.awt.geom.Point2D;
 public class BorderedFactory extends AbstractShapeFactory {
     private static final Renderer renderer = new BorderedRenderer();
     @Override
-    public Square createSquare(int size, Point2D.Double position) {
-        return new BorderedSquare(size, position, renderer);
+    public Square createSquare(Point2D.Double position, int size) {
+        return new BorderedSquare(position, size, renderer);
     }
 
     @Override
-    public Circle createCircle(int size, Point2D.Double position) {
-        return new BorderedCircle(size, position, renderer);
+    public Circle createCircle(Point2D.Double position, int size) {
+        return new BorderedCircle(position, size, renderer);
     }
 }

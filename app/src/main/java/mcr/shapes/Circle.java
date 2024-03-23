@@ -6,7 +6,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 public abstract class Circle extends AbstractShape {
-    protected Circle(int size, Point2D.Double position, Renderer renderer) {
+    protected Circle(Point2D.Double position, int size, Renderer renderer) {
         super(new Ellipse2D.Double(position.x, position.y, size, size), renderer);
     }
 
@@ -17,6 +17,6 @@ public abstract class Circle extends AbstractShape {
 
     @Override
     public void move() {
-        // Check collision
+        // TODO: Check the collision with the frame border and move the boucable accordingly
     }
 }

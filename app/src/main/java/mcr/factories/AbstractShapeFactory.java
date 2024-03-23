@@ -7,7 +7,7 @@ import java.awt.geom.Point2D;
 
 public abstract class AbstractShapeFactory {
 
-    public abstract Square createSquare(int size, Point2D.Double position);
+    public abstract Square createSquare(Point2D.Double position, int size);
 
-    public abstract Circle createCircle(int size, Point2D.Double position);
+    public abstract Circle createCircle(Point2D.Double position, int size);
 }

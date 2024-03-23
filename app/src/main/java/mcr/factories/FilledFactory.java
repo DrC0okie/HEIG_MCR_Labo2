@@ -14,13 +14,13 @@ public class FilledFactory extends AbstractShapeFactory {
     private static final Renderer renderer = new FilledRenderer();
 
     @Override
-    public Square createSquare(int size, Point2D.Double position) {
-        return new FilledSquare(size, position, renderer);
+    public Square createSquare(Point2D.Double position, int size) {
+        return new FilledSquare(position, size, renderer);
     }
 
     @Override
-    public Circle createCircle(int size, Point2D.Double position) {
-        return new FilledCircle(size, position, renderer);
+    public Circle createCircle(Point2D.Double position, int size) {
+        return new FilledCircle(position, size, renderer);
     }
 }
 

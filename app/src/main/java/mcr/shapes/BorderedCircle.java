@@ -5,8 +5,8 @@ import java.awt.geom.Point2D;
 import mcr.rendering.Renderer;
 
 public class BorderedCircle extends Circle {
-    public BorderedCircle(int size, Point2D.Double position, Renderer renderer) {
-        super(size, position, renderer);
+    public BorderedCircle(Point2D.Double position, int size, Renderer renderer) {
+        super(position, size, renderer);
     }
 
     @Override
