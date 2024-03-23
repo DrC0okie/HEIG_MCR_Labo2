@@ -75,7 +75,7 @@ public class App {
      * Run two thread, one for moving shapes, one for rendering.
      */
     public void run() {
-        // Render looper that takes the delay in ms as constructor
+        // TODO: Render looper that takes the delay in ms as constructor
         // This looper must have a run() method to launch it
         // and an abstract protected void update() method that we can implement here
         // by calling draw(), then move() on each bouncable objects.
