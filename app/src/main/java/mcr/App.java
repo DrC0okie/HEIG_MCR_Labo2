@@ -64,13 +64,13 @@ public class App {
         }
     }
 
-    static private Point2D.Double getRandomPoint(Display display){
+    static private Point2D.Double getRandomPoint(Display display) {
         double x = Math.random() * display.getWidth();
         double y = Math.random() * display.getHeight();
         return new Point2D.Double(x, y);
     }
 
-    static private int getRandomSize(Display display){
+    static private int getRandomSize(Display display) {
         return random.nextInt(MAX_SIZE - MIN_SIZE) + MIN_SIZE;
     }
 
@@ -83,11 +83,10 @@ public class App {
         // and an abstract protected void update() method that we can implement here
         // by calling draw(), then move() on each bouncable objects.
         // Finally, we call Display.getInstance().repaint();
-        while (true){
-            try{
+        while (true) {
+            try {
                 Thread.sleep(100);
-            }
-            catch(InterruptedException e){
+            } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
         }

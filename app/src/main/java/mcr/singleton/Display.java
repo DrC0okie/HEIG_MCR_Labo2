@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 
-public class Display implements Displayer{
+public class Display implements Displayer {
     private final static int MIN_WIDTH = 500;
     private final static int MIN_HEIGHT = 500;
     private final static int DEFAULT_WIDTH = 1000;
@@ -55,7 +55,7 @@ public class Display implements Displayer{
     @Override
     public void repaint() {
         panel.getGraphics().drawImage(image, 0, 0, null);
-        //after drawing the buffered image, we create a new one for the next frame.
+        // after drawing the buffered image, we create a new one for the next frame.
         image = createImage();
     }
 

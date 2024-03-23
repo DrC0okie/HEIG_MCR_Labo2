@@ -23,5 +23,3 @@ public class FilledFactory extends AbstractShapeFactory {
         return new FilledCircle(position, size, renderer);
     }
 }
-
-

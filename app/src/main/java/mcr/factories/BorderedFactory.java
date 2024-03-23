@@ -11,6 +11,7 @@ import java.awt.geom.Point2D;
 
 public class BorderedFactory extends AbstractShapeFactory {
     private static final Renderer renderer = new BorderedRenderer();
+
     @Override
     public Square createSquare(Point2D.Double position, int size) {
         return new BorderedSquare(position, size, renderer);

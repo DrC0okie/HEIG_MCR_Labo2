@@ -9,6 +9,6 @@ public class BorderedRenderer implements Renderer {
     public void display(Graphics2D g2d, Bouncable bouncable) {
 
         // TODO: Use the graphics to set the stroke, set the color (with the bouncable color) and
-        //  draw (with the boucable shape)
+        // draw (with the boucable shape)
     }
 }
