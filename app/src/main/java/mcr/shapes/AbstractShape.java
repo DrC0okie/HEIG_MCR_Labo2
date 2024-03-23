@@ -36,13 +36,14 @@ public abstract class AbstractShape implements Bouncable {
      * @return new hit box position of the bouncable
      */
     protected Rectangle2D checkCollision(){
-        // used to get the window frame width and height
+        // Get the window frame width and height
         Display display = Display.getInstance();
 
-        // used to get the hit box of the bouncable
+        // Get the hit box of the bouncable
         Rectangle2D hitBox = this.getShape().getBounds2D();
 
-        // TODO: Collision detection code
+        // TODO: Check if the hitbox collides with the window frame, then modify the trajectory
+        //  accordingly, finally return the new hit box of the bouncable
 
         return hitBox;
     }

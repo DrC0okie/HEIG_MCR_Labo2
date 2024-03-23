@@ -17,6 +17,6 @@ public abstract class Square extends AbstractShape {
 
     @Override
     public void move() {
-        // TODO: Check the collision with the frame border and move the boucable accordingly
+        // TODO: Check the collision, move the shape and set the new hit box (setFrame) of the shape
     }
 }
