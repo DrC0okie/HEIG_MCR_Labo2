@@ -8,13 +8,7 @@ public class BorderedRenderer implements Renderer {
     @Override
     public void display(Graphics2D g2d, Bouncable bouncable) {
 
-        // Set the border stroke
-        g2d.setStroke(new BasicStroke(2.0f));
-
-        // Set the border color
-        g2d.setColor(bouncable.getColor());
-
-        // Draw the bouncable
-        g2d.draw(bouncable.getShape());
+        // TODO: Use the graphics to set the stroke, set the color (with the bouncable color) and
+        //  draw (with the boucable shape)
     }
 }
