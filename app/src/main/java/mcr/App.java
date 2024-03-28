@@ -8,8 +8,11 @@ import mcr.singleton.Display;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class App {
     private final static int EXIT_KEY = KeyEvent.VK_Q;
@@ -19,7 +22,7 @@ public class App {
     private final static int ADD_QTY = 10;
     private final static int MAX_SIZE = 30;
     private final static int MIN_SIZE = 5;
-    private final LinkedList<Bouncable> bouncers = new LinkedList<>();
+    private final Collection<Bouncable> bouncers = new ConcurrentLinkedQueue<>(); // TODO: better choice ?
     private static Random random;
 
     public App() {
@@ -64,7 +67,7 @@ public class App {
         }
     }
 
-    static private Point2D.Double getRandomPoint(Display display) {
+    static public Point2D.Double getRandomPoint(Display display) {
         double x = Math.random() * display.getWidth();
         double y = Math.random() * display.getHeight();
         return new Point2D.Double(x, y);
@@ -78,14 +81,19 @@ public class App {
      * Run two thread, one for moving shapes, one for rendering.
      */
     public void run() {
+
         // TODO: Render looper that takes the delay in ms as constructor
         // This looper must have a run() method to launch it
         // and an abstract protected void update() method that we can implement here
         // by calling draw(), then move() on each bouncable objects.
         // Finally, we call Display.getInstance().repaint();
         while (true) {
+            for (Bouncable bouncer : bouncers) {
+                bouncer.move();
+                bouncer.draw();
+            }
             try {
-                Thread.sleep(100);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
