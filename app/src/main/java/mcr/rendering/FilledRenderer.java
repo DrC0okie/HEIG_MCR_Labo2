@@ -4,6 +4,7 @@ import mcr.shapes.Bouncable;
 
 import java.awt.*;
 
+// TODO MUST BE A SINGLETON!!!!!
 public class FilledRenderer implements Renderer {
     @Override
     public void display(Graphics2D g2d, Bouncable bouncable) {
