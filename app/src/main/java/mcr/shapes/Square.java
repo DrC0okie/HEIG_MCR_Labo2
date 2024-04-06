@@ -12,6 +12,11 @@ public abstract class Square extends AbstractShape {
     }
 
     @Override
+    public void move(){
+        Rectangle2D bounds = test();
+        this.getShape().setFrame(bounds);
+    }
+    @Override
     public Rectangle2D.Double getShape() {
         return (Rectangle2D.Double) super.getShape();
     }

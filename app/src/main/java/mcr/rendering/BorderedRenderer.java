@@ -8,6 +8,7 @@ import java.awt.*;
 public class BorderedRenderer implements Renderer {
     @Override
     public void display(Graphics2D g2d, Bouncable bouncable) {
+        // TODO
         g2d.setColor(bouncable.getColor());
         g2d.setStroke(new BasicStroke(2.0f));
         g2d.draw(bouncable.getShape());
