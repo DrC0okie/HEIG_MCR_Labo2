@@ -1,0 +1,192 @@
+@startuml
+
+' STATIC
+' Style
+hide AppTest
+skinparam direction top to bottom
+hide empty members
+skinparam fixCircleLabelOverlapping true
+skinparam classAttributeIconSize 0
+set separator none
+scale 1.5
+
+'Missing external classes
+'TODO: really useful ?
+class java.awt.Shape
+
+' Missing associations
+App "1"->"*" Bouncable: stores >
+AbstractShape *-left-"1" java.awt.Shape: uses >
+Util "*"-"1" Display: uses >
+AbstractShape *->"1" Renderer: uses >
+Display -- Display: store single instance
+'TODO: should renderer be represented in AbstractShapeFactory ?
+
+' Post operations
+' REMOVE
+'TODO: c'est static est-ce qu'il faut vraiment le retirer ?
+' .*bouncers: .*<Bouncable>
+' - shape: Shape\n
+
+'TODO: c'est static est-ce qu'il faut vraiment le retirer ?
+' .*display: Display\n
+' .*instance: Display\n
+
+'for abstractshape
+' - renderer: Renderer
+
+' ENDSTATIC
+
+class Display {
+- {static} DEFAULT_WIDTH: int
+- {static} DEFAULT_HEIGHT: int
+- frame: JFrame
+- panel: JPanel
+- image: Image
++ {static} getInstance(): Display
++ getWidth(): int
++ getHeight(): int
++ getGraphics(): Graphics2D
++ repaint(): void
++ setTitle(title: String): void
++ addKeyListener(ka: KeyAdapter): void
+- createImage(): Image
+}
+
+
+class FilledFactory {
+- {static} renderer: Renderer
++ createSquare(): Square
++ createCircle(): Circle
+}
+
+
+class BorderedFactory {
+- {static} renderer: Renderer
++ createSquare(): Square
++ createCircle(): Circle
+}
+
+
+class BorderedSquare {
++ getColor(): Color
+}
+
+class FilledCircle {
++ getColor(): Color
+}
+
+class BorderedRenderer {
++ {static} getInstance(): BorderedRenderer
++ display(g2d: Graphics2D, bouncable: Bouncable): void
+}
+
+class BorderedRenderer$Instance {
+- {static} instance: BorderedRenderer
+}
+
+class BorderedCircle {
++ getColor(): Color
+}
+
+abstract class AbstractShapeFactory {
++ {abstract}createSquare(): Square
++ {abstract}createCircle(): Circle
+}
+
+class FilledRenderer {
++ {static} getInstance(): FilledRenderer
++ display(g2d: Graphics2D, bouncable: Bouncable): void
+}
+
+class FilledRenderer$Instance {
+- {static} instance: FilledRenderer
+}
+
+interface Displayer {
+~ getWidth(): int
+~ getHeight(): int
+~ getGraphics(): Graphics2D
+~ repaint(): void
+~ setTitle(title: String): void
+~ addKeyListener(adapter: KeyAdapter): void
+}
+
+abstract class Circle {
++ getShape(): Ellipse2D
++ move(): void
+}
+
+interface Bouncable {
+~ draw(): void
+~ move(): void
+~ getColor(): Color
+~ getShape(): Shape
+}
+
+class App {
+- {static} EXIT_KEY: int
+- {static} CLEAR_KEY: int
+- {static} ADD_FILLED_KEY: int
+- {static} ADD_BORDERED_KEY: int
+- {static} ADD_QTY: int
+
++ {static} main(args: String): void
+- addBouncers(factory: AbstractShapeFactory): void
++ run(): void
+}
+
+
+interface Renderer {
+~ display(g2d: Graphics2D, bouncable: Bouncable): void
+}
+
+class AppTest {
+}
+class FilledSquare {
++ getColor(): Color
+}
+
+abstract class AbstractShape {
+
+- moveVector: Point2D.Double
++ draw(): void
++ getShape(): Shape
+# getNewBoundsAfterMove(): Rectangle2D
+}
+
+
+abstract class Square {
++ getShape(): Rectangle2D.Double
++ move(): void
+}
+
+class Util {
+- {static} MAX_SIZE: int
+- {static} MIN_SIZE: int
+- {static} MAX_SPEED: int
++ {static} REFRESH_RATE: int
+- {static} random: Random
++ {static} getRandomPoint(): Point2D.Double
++ {static} getRandomMove(): Point2D.Double
++ {static} getRandomSize(): int
+}
+
+
+
+
+Displayer <|.. Display
+AbstractShapeFactory <|-- FilledFactory
+AbstractShapeFactory <|-- BorderedFactory
+Square <|-- BorderedSquare
+Circle <|-- FilledCircle
+Renderer <|.. BorderedRenderer
+BorderedRenderer +.. BorderedRenderer$Instance
+Circle <|-- BorderedCircle
+Renderer <|.. FilledRenderer
+FilledRenderer +.. FilledRenderer$Instance
+AbstractShape <|-- Circle
+Square <|-- FilledSquare
+Bouncable <|.. AbstractShape
+AbstractShape <|-- Square
+@enduml
