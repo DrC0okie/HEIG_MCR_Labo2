@@ -1,6 +1,5 @@
 package mcr.factories;
 
-import mcr.App;
 import mcr.Util;
 import mcr.rendering.FilledRenderer;
 import mcr.rendering.Renderer;
@@ -10,7 +9,7 @@ import mcr.shapes.Circle;
 import mcr.shapes.Square;
 
 public class FilledFactory extends AbstractShapeFactory {
-    private static final Renderer renderer = new FilledRenderer();
+    private static final Renderer renderer = FilledRenderer.getInstance();
 
     @Override
     public Square createSquare() {

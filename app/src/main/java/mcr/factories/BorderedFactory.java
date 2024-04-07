@@ -10,7 +10,7 @@ import mcr.shapes.Circle;
 import mcr.shapes.Square;
 
 public class BorderedFactory extends AbstractShapeFactory {
-    private static final Renderer renderer = new BorderedRenderer();
+    private static final Renderer renderer = BorderedRenderer.getInstance();
 
     @Override
     public Square createSquare() {
