@@ -22,6 +22,8 @@ public class App {
     public App() {
         Display display = Display.getInstance();
         display.setTitle("Bouncers");
+        final BorderedFactory bf = new BorderedFactory();
+        final FilledFactory ff = new FilledFactory();
         display.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -33,10 +35,10 @@ public class App {
                         bouncers.clear();
                         break;
                     case ADD_BORDERED_KEY:
-                        addBouncers(new BorderedFactory());
+                        addBouncers(bf);
                         break;
                     case ADD_FILLED_KEY:
-                        addBouncers(new FilledFactory());
+                        addBouncers(ff);
                         break;
                 }
             }
