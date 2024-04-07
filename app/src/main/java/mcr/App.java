@@ -62,15 +62,9 @@ public class App {
     }
 
     /**
-     * Run two thread, one for moving shapes, one for rendering.
+     * Repaint loop to move and draw each bouncer every Util.REFRESH_RATE ms
      */
     public void run() {
-
-        // TODO: Render looper that takes the delay in ms as constructor
-        // This looper must have a run() method to launch it
-        // and an abstract protected void update() method that we can implement here
-        // by calling draw(), then move() on each bouncable objects.
-        // Finally, we call Display.getInstance().repaint();
         while (true) {
             for (Bouncable bouncer : bouncers) {
                 bouncer.move();
@@ -78,7 +72,7 @@ public class App {
             }
             Display.getInstance().repaint();
             try {
-                Thread.sleep(20);
+                Thread.sleep(Util.REFRESH_RATE);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }

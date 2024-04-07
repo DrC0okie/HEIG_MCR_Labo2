@@ -9,6 +9,7 @@ public class Util {
     private final static int MAX_SIZE = 30;
     private final static int MIN_SIZE = 5;
     private final static int MAX_SPEED = 10; // max number of pixels to move by iteration
+    public final static int REFRESH_RATE = 20;  //repaint every 20ms
     private static Random random;
     private static Display display = Display.getInstance();
 
