@@ -5,7 +5,6 @@ import mcr.rendering.Renderer;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 public abstract class Circle extends AbstractShape {
     protected Circle(Point2D.Double position, int size, Renderer renderer) {
@@ -13,13 +12,12 @@ public abstract class Circle extends AbstractShape {
     }
 
     @Override
-    public void move(){
-        Rectangle2D bounds = test();
-        this.getShape().setFrame(bounds);
+    public Ellipse2D getShape() {
+        return (Ellipse2D) super.getShape();
     }
 
     @Override
-    public Ellipse2D getShape() {
-        return (Ellipse2D) super.getShape();
+    public void move() {
+        this.getShape().setFrame(getNewBoundsAfterMove());
     }
 }

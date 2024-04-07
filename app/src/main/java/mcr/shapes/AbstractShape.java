@@ -1,7 +1,6 @@
 package mcr.shapes;
 
 import mcr.singleton.Display;
-import mcr.App;
 import mcr.rendering.Renderer;
 
 import java.awt.*;
@@ -30,69 +29,39 @@ public abstract class AbstractShape implements Bouncable {
         return shape;
     }
 
-    protected Rectangle2D test() {
-//        Display window = Display.getInstance();
-//
-//        // Compute the next position
-//        Rectangle bounds = getShape().getBounds();
-//        Point2D.Double nextPosition = new Point2D.Double(bounds.getMinX() + moveVector.x, bounds.getMinY() + moveVector.y);
-//
-//        // If the shape goes out of the window bounds, we need to change the moveVector for the next iteration
-//        if (nextPosition.x < 0
-//                || nextPosition.x + bounds.width > window.getWidth()
-//                || nextPosition.y < 0
-//                || nextPosition.y + bounds.height > window.getHeight()) {
-//
-//            // If we touch the left or right of the window, we need to invert the X value, otherwise the Y value
-//            int invertX = nextPosition.x < 0 || nextPosition.y > window.getWidth() ? -1 : 1;
-//            moveVector = new Point2D.Double(moveVector.x * invertX, moveVector.y * invertX * -1);
-//        }
-
+    protected Rectangle2D getNewBoundsAfterMove() {
         Display window = Display.getInstance();
         Rectangle2D bounds = this.getShape().getBounds2D();
 
-        // add move vector to bounds
+        // Move the shape
         bounds.setRect(bounds.getX() + moveVector.x, bounds.getY() + moveVector.y, bounds.getWidth(), bounds.getHeight());
 
-        Point2D.Double offset = new Point2D.Double(); // how much the shape is off the screen
-        if (bounds.getX() < 0) { // check left border
+        // Check if the shape is out of the window
+        Point2D.Double offset = new Point2D.Double(); // offset of the (0,0) top left point, relative to the window
+        if (bounds.getX() < 0) // check left border
             offset.x = bounds.getX();
-        }
-        if (bounds.getX() + bounds.getWidth() > window.getWidth()) { // check right border
-            offset.x = bounds.getX() + bounds.getWidth() - window.getWidth();
-        }
-        if (bounds.getY() < 0) { // check top border
+        if (bounds.getY() < 0) // check top border
             offset.y = bounds.getY();
-        }
-        if (bounds.getY() + bounds.getHeight() > window.getHeight()) { // check bottom border
-            offset.y = bounds.getY() + bounds.getHeight() - window.getHeight();
-        }
 
-        // if there is an offset, move the shape back
-        bounds.setRect(bounds.getX() - offset.x, bounds.getY() - offset.y, bounds.getWidth(), bounds.getHeight());
+        double rightX = bounds.getX() + bounds.getWidth();
+        if (rightX > window.getWidth()) // check right border
+            offset.x = rightX - window.getWidth();
 
-        // if the shape was off the screen, bounce it back
-        if (offset.x != 0) moveVector.x *= -1;
-        if (offset.y != 0) moveVector.y *= -1;
+        double bottomY = bounds.getY() + bounds.getHeight();
+        if (bottomY > window.getHeight()) // check bottom border
+            offset.y = bottomY - window.getHeight();
+
+        // If there is an offset, move the shape back into the window
+        // To not loose shapes outside, changing moveVector is not enough, we need to move it back inside the window
+        if (offset.x != 0 || offset.y != 0)
+            bounds.setRect(bounds.getX() - offset.x, bounds.getY() - offset.y, bounds.getWidth(), bounds.getHeight());
+
+        // If the shape was off the screen, change the way of moveVector X and/or Y
+        if (offset.x != 0)
+            moveVector.x *= -1;
+        if (offset.y != 0)
+            moveVector.y *= -1;
+
         return bounds;
-
-        // TODO: Check the collision, move the shape and set the new hit box (setFrame) of the shape
-    }
-
-    /**
-     * Check is a collision happens between the bouncable hit box and the window frame
-     * @return new hit box position of the bouncable
-     */
-    protected Rectangle2D checkCollision() {
-        // Get the window frame width and height
-        Display display = Display.getInstance();
-
-        // Get the hit box of the bouncable
-        Rectangle2D hitBox = this.getShape().getBounds2D();
-
-        // TODO: Check if the hitbox collides with the window frame, then modify the trajectory
-        // accordingly, finally return the new hit box of the bouncable
-
-        return hitBox;
     }
 }
