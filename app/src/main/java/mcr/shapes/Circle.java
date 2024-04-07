@@ -15,4 +15,9 @@ public abstract class Circle extends AbstractShape {
     public Ellipse2D getShape() {
         return (Ellipse2D) super.getShape();
     }
+
+    @Override
+    public void move() {
+        this.getShape().setFrame(getNewBoundsAfterMove());
+    }
 }

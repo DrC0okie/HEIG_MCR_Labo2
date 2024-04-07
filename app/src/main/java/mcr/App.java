@@ -74,6 +74,7 @@ public class App {
                 bouncer.move();
                 bouncer.draw();
             }
+            Display.getInstance().repaint();
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
