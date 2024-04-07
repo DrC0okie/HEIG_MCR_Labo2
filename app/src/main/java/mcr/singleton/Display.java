@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 
 public class Display implements Displayer {
-    private final static int MIN_WIDTH = 500;
-    private final static int MIN_HEIGHT = 500;
     private final static int DEFAULT_WIDTH = 1000;
     private final static int DEFAULT_HEIGHT = 1000;
     private static Display instance;
@@ -19,7 +17,6 @@ public class Display implements Displayer {
         panel = new JPanel();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
         frame.add(panel, BorderLayout.CENTER);
         frame.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         frame.setVisible(true);
