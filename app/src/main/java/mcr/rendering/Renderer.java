@@ -5,7 +5,7 @@ import mcr.shapes.Bouncable;
 import java.awt.*;
 
 public interface Renderer {
-    default void display(Graphics2D g2d, Bouncable bouncable) {
+    default public void display(Graphics2D g2d, Bouncable bouncable) {
         g2d.setColor(bouncable.getColor());
     }
 }
