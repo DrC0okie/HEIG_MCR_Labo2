@@ -3,7 +3,7 @@ package mcr;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-import mcr.singleton.Display;
+import mcr.display.Display;
 
 public class Util {
     private final static int MAX_SIZE = 30;

@@ -1,6 +1,6 @@
 package mcr.shapes;
 
-import mcr.singleton.Display;
+import mcr.display.Display;
 import mcr.rendering.Renderer;
 
 import java.awt.*;

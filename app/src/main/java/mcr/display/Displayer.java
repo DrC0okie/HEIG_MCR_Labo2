@@ -1,4 +1,4 @@
-package mcr.singleton;
+package mcr.display;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;

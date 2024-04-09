@@ -1,4 +1,4 @@
-package mcr.singleton;
+package mcr.display;
 
 import javax.swing.*;
 import java.awt.*;
