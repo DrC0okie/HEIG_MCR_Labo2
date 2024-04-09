@@ -5,11 +5,11 @@ import mcr.factories.BorderedFactory;
 import mcr.factories.FilledFactory;
 import mcr.shapes.Bouncable;
 import mcr.display.Display;
-
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class App {
@@ -19,7 +19,7 @@ public class App {
     private final static int ADD_BORDERED_KEY = KeyEvent.VK_B;
     private final static int ADD_QTY = 10;
 
-    private final Collection<Bouncable> bouncers = new ConcurrentLinkedQueue<>(); // TODO: better choice ?
+    private final Collection<Bouncable> bouncers = new LinkedList<>();
 
     public App() {
         Display display = Display.getInstance();
