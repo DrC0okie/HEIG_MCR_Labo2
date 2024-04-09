@@ -9,7 +9,7 @@ import java.awt.*;
 public class BorderedRenderer implements Renderer {
 
     private static class Instance {
-        private static BorderedRenderer instance = new BorderedRenderer();
+        private static BorderedRenderer INSTANCE = new BorderedRenderer();
     }
 
     /**
@@ -17,7 +17,7 @@ public class BorderedRenderer implements Renderer {
      * @return instance of BorderedRenderer
      */
     public static BorderedRenderer getInstance() {
-        return Instance.instance;
+        return Instance.INSTANCE;
     }
 
     private BorderedRenderer() {

@@ -10,7 +10,11 @@ import java.awt.event.KeyAdapter;
 public class Display implements Displayer {
     private final static int DEFAULT_WIDTH = 1000;
     private final static int DEFAULT_HEIGHT = 1000;
-    private static Display instance;
+
+    private static class Instance {
+        private static final Display INSTANCE = new Display();
+    }
+
     private final JFrame frame;
     private final JPanel panel;
     private Image image;
@@ -31,10 +35,7 @@ public class Display implements Displayer {
      * @return instance of Display
      */
     public static Display getInstance() {
-        if (instance == null) {
-            instance = new Display();
-        }
-        return instance;
+        return Instance.INSTANCE;
     }
 
     /**
