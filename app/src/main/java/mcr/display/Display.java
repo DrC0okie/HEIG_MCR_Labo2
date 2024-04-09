@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 
+/**
+ * Display class that allows for the rendering of objects on the screen
+ */
 public class Display implements Displayer {
     private final static int DEFAULT_WIDTH = 1000;
     private final static int DEFAULT_HEIGHT = 1000;
@@ -34,21 +37,36 @@ public class Display implements Displayer {
         return instance;
     }
 
+    /**
+     * Get the width of the display frame
+     * @return width of the display frame
+     */
     @Override
     public int getWidth() {
         return panel.getWidth();
     }
 
+    /**
+     * Get the height of the display frame
+     * @return height of the display frame
+     */
     @Override
     public int getHeight() {
         return panel.getHeight();
     }
 
+    /**
+     * Get the graphics object used to draw on the display frame
+     * @return graphics object
+     */
     @Override
     public Graphics2D getGraphics() {
         return (Graphics2D) image.getGraphics();
     }
 
+    /**
+     * Induces the rendering of the display frame
+     */
     @Override
     public void repaint() {
         panel.getGraphics().drawImage(image, 0, 0, null);
@@ -56,14 +74,22 @@ public class Display implements Displayer {
         image = createImage();
     }
 
+    /**
+     * Set the title of the display frame
+     * @param title Displayed title name
+     */
     @Override
     public void setTitle(String title) {
         frame.setTitle(title);
     }
 
+    /**
+     * Bind a KeyAdapter to display frame that allows keyboard control event listening
+     * @param adapter KeyAdapter to bind
+     */
     @Override
-    public void addKeyListener(KeyAdapter ka) {
-        frame.addKeyListener(ka);
+    public void addKeyListener(KeyAdapter adapter) {
+        frame.addKeyListener(adapter);
     }
 
     /**

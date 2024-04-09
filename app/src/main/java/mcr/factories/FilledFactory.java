@@ -8,6 +8,9 @@ import mcr.shapes.FilledSquare;
 import mcr.shapes.Circle;
 import mcr.shapes.Square;
 
+/**
+ * Factory for creating Filled shapes
+ */
 public class FilledFactory extends AbstractShapeFactory {
     private static final Renderer RENDERER = FilledRenderer.getInstance();
 

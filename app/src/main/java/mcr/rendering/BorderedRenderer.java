@@ -1,9 +1,11 @@
 package mcr.rendering;
 
 import mcr.shapes.Bouncable;
-
 import java.awt.*;
 
+/**
+ * Renderer for drawing a border around a bouncable
+ */
 public class BorderedRenderer implements Renderer {
 
     private static class Instance {

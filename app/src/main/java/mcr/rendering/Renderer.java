@@ -1,7 +1,6 @@
 package mcr.rendering;
 
 import mcr.shapes.Bouncable;
-
 import java.awt.*;
 
 public interface Renderer {

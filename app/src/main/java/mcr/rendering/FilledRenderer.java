@@ -1,9 +1,11 @@
 package mcr.rendering;
 
 import mcr.shapes.Bouncable;
-
 import java.awt.*;
 
+/**
+ * Renderer for filling a bouncable
+ */
 public class FilledRenderer implements Renderer {
 
     private static class Instance {

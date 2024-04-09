@@ -3,6 +3,9 @@ package mcr.display;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 
+/**
+ * Interface for displaying objects on the screen
+ */
 public interface Displayer {
     /**
      * Get the width of the displayed object
@@ -35,7 +38,7 @@ public interface Displayer {
 
     /**
      * Bind a KeyAdapter to displayed object that allows keyboard control event listening
-     * @param ka KeyAdapter to bind
+     * @param adapter KeyAdapter to bind
      */
     void addKeyListener(KeyAdapter adapter);
 }

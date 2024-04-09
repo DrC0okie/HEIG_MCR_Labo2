@@ -2,11 +2,13 @@ package mcr.shapes;
 
 import mcr.display.Display;
 import mcr.rendering.Renderer;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * Abstract class that represents a shape
+ */
 public abstract class AbstractShape implements Bouncable {
 
     private final Renderer renderer;
@@ -19,16 +21,27 @@ public abstract class AbstractShape implements Bouncable {
         this.moveVector = moveVector;
     }
 
+    /**
+     * Draws the shape on the display
+     */
     @Override
     public void draw() {
         renderer.display(Display.getInstance().getGraphics(), this);
     }
 
+    /**
+     * Returns the shape
+     * @return the shape
+     */
     @Override
     public Shape getShape() {
         return shape;
     }
 
+    /**
+     * Manages the shape movement and collision
+     * @return the new bounds of the shape after the move
+     */
     protected Rectangle2D getNewBoundsAfterMove() {
         Display window = Display.getInstance();
         Rectangle2D bounds = this.getShape().getBounds2D();
@@ -52,7 +65,7 @@ public abstract class AbstractShape implements Bouncable {
             offset.y = bottomY - window.getHeight();
 
         // If there is an offset, move the shape back into the window
-        // To not loose shapes outside, changing moveVector is not enough, we need to move it back inside the window
+        // To not lose shapes outside, changing moveVector is not enough, we need to move it back inside the window
         if (offset.x != 0 || offset.y != 0)
             bounds.setRect(bounds.getX() - offset.x, bounds.getY() - offset.y, bounds.getWidth(), bounds.getHeight());
 

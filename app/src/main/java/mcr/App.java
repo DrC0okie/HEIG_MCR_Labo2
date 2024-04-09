@@ -10,7 +10,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class App {
     private final static int EXIT_KEY = KeyEvent.VK_Q;
