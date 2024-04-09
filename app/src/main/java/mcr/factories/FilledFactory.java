@@ -14,15 +14,14 @@ import mcr.shapes.Square;
 public class FilledFactory extends AbstractShapeFactory {
     private static final Renderer RENDERER = FilledRenderer.getInstance();
 
-    private static FilledFactory instance;
+    private static class Instance {
+        private static final FilledFactory INSTANCE = new FilledFactory();
+    }
 
     private FilledFactory() {}
 
     public static FilledFactory getInstance() {
-        if (instance == null) {
-            instance = new FilledFactory();
-        }
-        return instance;
+        return Instance.INSTANCE;
     }
 
     @Override

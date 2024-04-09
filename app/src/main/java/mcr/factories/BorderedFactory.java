@@ -14,7 +14,9 @@ import mcr.shapes.Square;
 public class BorderedFactory extends AbstractShapeFactory {
     private static final Renderer RENDERER = BorderedRenderer.getInstance();
 
-    private static BorderedFactory instance;
+    private static class instance {
+        private static final BorderedFactory INSTANCE = new BorderedFactory();
+    }
 
     private BorderedFactory() {}
 
@@ -23,10 +25,7 @@ public class BorderedFactory extends AbstractShapeFactory {
      * @return instance of BorderedFactory
      */
     public static BorderedFactory getInstance() {
-        if (instance == null) {
-            instance = new BorderedFactory();
-        }
-        return instance;
+        return instance.INSTANCE;
     }
 
     /**
