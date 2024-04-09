@@ -4,7 +4,9 @@ import mcr.factories.AbstractShapeFactory;
 import mcr.factories.BorderedFactory;
 import mcr.factories.FilledFactory;
 import mcr.shapes.Bouncable;
-import mcr.singleton.Display;
+import mcr.display.Display;
+
+import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Collection;
@@ -22,8 +24,6 @@ public class App {
     public App() {
         Display display = Display.getInstance();
         display.setTitle("Bouncers");
-        final BorderedFactory bf = new BorderedFactory();
-        final FilledFactory ff = new FilledFactory();
         display.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -35,10 +35,10 @@ public class App {
                         bouncers.clear();
                         break;
                     case ADD_BORDERED_KEY:
-                        addBouncers(bf);
+                        addBouncers(BorderedFactory.getInstance());
                         break;
                     case ADD_FILLED_KEY:
-                        addBouncers(ff);
+                        addBouncers(FilledFactory.getInstance());
                         break;
                 }
             }
@@ -65,17 +65,13 @@ public class App {
      * Repaint loop to move and draw each bouncer every Util.REFRESH_RATE ms
      */
     public void run() {
-        while (true) {
+        Timer timer = new Timer(Util.REFRESH_RATE, e -> {
             for (Bouncable bouncer : bouncers) {
                 bouncer.move();
                 bouncer.draw();
             }
             Display.getInstance().repaint();
-            try {
-                Thread.sleep(Util.REFRESH_RATE);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        });
+        timer.start();
     }
 }
