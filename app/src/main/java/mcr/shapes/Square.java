@@ -14,19 +14,10 @@ public abstract class Square extends Bouncer {
     }
 
     /**
-     * Returns the square shape
-     * @return the square shape
-     */
-    @Override
-    public Rectangle2D.Double getShape() {
-        return (Rectangle2D.Double) super.getShape();
-    }
-
-    /**
      * Moves the square in a direction
      */
     @Override
     public void move() {
-        this.getShape().setFrame(getNewBoundsAfterMove());
+        ((Rectangle2D) super.getShape()).setFrame(getNewBoundsAfterMove());
     }
 }

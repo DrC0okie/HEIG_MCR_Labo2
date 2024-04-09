@@ -15,19 +15,10 @@ public abstract class Circle extends Bouncer {
     }
 
     /**
-     * Returns the circle shape
-     * @return the circle shape
-     */
-    @Override
-    public Ellipse2D getShape() {
-        return (Ellipse2D) super.getShape();
-    }
-
-    /**
      * Moves the circle in a direction
      */
     @Override
     public void move() {
-        this.getShape().setFrame(getNewBoundsAfterMove());
+        ((Ellipse2D) super.getShape()).setFrame(getNewBoundsAfterMove());
     }
 }
