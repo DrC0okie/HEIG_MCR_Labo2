@@ -23,8 +23,8 @@ public class BorderedRenderer implements Renderer {
 
     /**
      * Draw and set the stroke of the bouncable
-     * @param Graphics2D g2d
-     * @param Bouncable bouncable
+     * @param g2d The graphics object used to draw the bouncable
+     * @param bouncable The bouncable to draw
      */
     @Override
     public void display(Graphics2D g2d, Bouncable bouncable) {
