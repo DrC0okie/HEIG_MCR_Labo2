@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * Represents an abstract square
  */
-public abstract class Square extends AbstractShape {
+public abstract class Square extends Bouncer {
     protected Square(Point2D.Double position, int size, Renderer renderer) {
         super(new Rectangle2D.Double(position.x, position.y, size, size), renderer, Util.getRandomMove());
     }

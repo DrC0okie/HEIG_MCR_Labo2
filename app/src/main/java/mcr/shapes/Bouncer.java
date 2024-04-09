@@ -9,13 +9,13 @@ import java.awt.geom.Rectangle2D;
 /**
  * Abstract class that represents a shape
  */
-public abstract class AbstractShape implements Bouncable {
+public abstract class Bouncer implements Bouncable {
 
     private final Renderer renderer;
     private final Shape shape;
     private Point2D.Double moveVector;
 
-    protected AbstractShape(Shape shape, Renderer renderer, Point2D.Double moveVector) {
+    protected Bouncer(Shape shape, Renderer renderer, Point2D.Double moveVector) {
         this.renderer = renderer;
         this.shape = shape;
         this.moveVector = moveVector;

@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 /**
  * Represents an abstract circle
  */
-public abstract class Circle extends AbstractShape {
+public abstract class Circle extends Bouncer {
     protected Circle(Point2D.Double position, int size, Renderer renderer) {
         super(new Ellipse2D.Double(position.x, position.y, size, size), renderer, Util.getRandomMove());
     }
