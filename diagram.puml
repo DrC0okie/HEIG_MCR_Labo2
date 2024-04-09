@@ -3,7 +3,6 @@
 ' STATIC
 ' Style
 hide AppTest
-skinparam direction top to bottom
 hide empty members
 skinparam fixCircleLabelOverlapping true
 skinparam classAttributeIconSize 0
@@ -15,11 +14,10 @@ scale 1.5
 class java.awt.Shape
 
 ' Missing associations
-App "1"->"*" Bouncable: stores >
-AbstractShape *-left-"1" java.awt.Shape: uses >
+Bouncers "1"->"*" Bouncable: stores >
+Bouncer *-left-"1" java.awt.Shape: uses >
 Util "*"-"1" Display: uses >
-AbstractShape *->"1" Renderer: uses >
-Display -- Display: store single instance
+Bouncer *->"1" Renderer: uses >
 'TODO: should renderer be represented in AbstractShapeFactory ?
 
 ' Post operations
@@ -32,44 +30,55 @@ Display -- Display: store single instance
 ' .*display: Display\n
 ' .*instance: Display\n
 
-'for abstractshape
+'for bouncer
 ' - renderer: Renderer
 
 ' ENDSTATIC
 
-class Display {
-- {static} DEFAULT_WIDTH: int
-- {static} DEFAULT_HEIGHT: int
-- frame: JFrame
-- panel: JPanel
-- image: Image
-+ {static} getInstance(): Display
-+ getWidth(): int
-+ getHeight(): int
-+ getGraphics(): Graphics2D
-+ repaint(): void
-+ setTitle(title: String): void
-+ addKeyListener(ka: KeyAdapter): void
-- createImage(): Image
+abstract class Bouncer {
+
+- moveVector: Point2D.Double
++ draw(): void
++ getShape(): Shape
+# getNewBoundsAfterMove(): Rectangle2D
 }
 
 
 class FilledFactory {
-- {static} renderer: Renderer
+- {static} RENDERER: Renderer
++ {static} getInstance(): FilledFactory
 + createSquare(): Square
 + createCircle(): Circle
 }
 
+
+class FilledFactory$Instance {
+- {static} INSTANCE: FilledFactory
+}
 
 class BorderedFactory {
-- {static} renderer: Renderer
+- {static} RENDERER: Renderer
++ {static} getInstance(): BorderedFactory
 + createSquare(): Square
 + createCircle(): Circle
 }
 
+
+class BorderedFactory$instance {
+- {static} INSTANCE: BorderedFactory
+}
 
 class BorderedSquare {
 + getColor(): Color
+}
+
+interface Displayer {
+~ getWidth(): int
+~ getHeight(): int
+~ getGraphics(): Graphics2D
+~ repaint(): void
+~ setTitle(title: String): void
+~ addKeyListener(adapter: KeyAdapter): void
 }
 
 class FilledCircle {
@@ -82,7 +91,7 @@ class BorderedRenderer {
 }
 
 class BorderedRenderer$Instance {
-- {static} instance: BorderedRenderer
+- {static} INSTANCE: BorderedRenderer
 }
 
 class BorderedCircle {
@@ -100,21 +109,33 @@ class FilledRenderer {
 }
 
 class FilledRenderer$Instance {
-- {static} instance: FilledRenderer
-}
-
-interface Displayer {
-~ getWidth(): int
-~ getHeight(): int
-~ getGraphics(): Graphics2D
-~ repaint(): void
-~ setTitle(title: String): void
-~ addKeyListener(adapter: KeyAdapter): void
+- {static} INSTANCE: FilledRenderer
 }
 
 abstract class Circle {
 + getShape(): Ellipse2D
 + move(): void
+}
+
+class Display {
+- {static} DEFAULT_WIDTH: int
+- {static} DEFAULT_HEIGHT: int
+- frame: JFrame
+- panel: JPanel
+- image: Image
++ {static} getInstance(): Display
++ getWidth(): int
++ getHeight(): int
++ getGraphics(): Graphics2D
++ repaint(): void
++ setTitle(title: String): void
++ addKeyListener(adapter: KeyAdapter): void
+- createImage(): Image
+}
+
+
+class Display$Instance {
+- {static} INSTANCE: Display
 }
 
 interface Bouncable {
@@ -124,7 +145,7 @@ interface Bouncable {
 ~ getShape(): Shape
 }
 
-class App {
+class Bouncers {
 - {static} EXIT_KEY: int
 - {static} CLEAR_KEY: int
 - {static} ADD_FILLED_KEY: int
@@ -147,15 +168,6 @@ class FilledSquare {
 + getColor(): Color
 }
 
-abstract class AbstractShape {
-
-- moveVector: Point2D.Double
-+ draw(): void
-+ getShape(): Shape
-# getNewBoundsAfterMove(): Rectangle2D
-}
-
-
 abstract class Square {
 + getShape(): Rectangle2D.Double
 + move(): void
@@ -175,9 +187,11 @@ class Util {
 
 
 
-Displayer <|.. Display
+Bouncable <|.. Bouncer
 AbstractShapeFactory <|-- FilledFactory
+FilledFactory +.. FilledFactory$Instance
 AbstractShapeFactory <|-- BorderedFactory
+BorderedFactory +.. BorderedFactory$instance
 Square <|-- BorderedSquare
 Circle <|-- FilledCircle
 Renderer <|.. BorderedRenderer
@@ -185,8 +199,9 @@ BorderedRenderer +.. BorderedRenderer$Instance
 Circle <|-- BorderedCircle
 Renderer <|.. FilledRenderer
 FilledRenderer +.. FilledRenderer$Instance
-AbstractShape <|-- Circle
+Bouncer <|-- Circle
+Displayer <|.. Display
+Display +.. Display$Instance
 Square <|-- FilledSquare
-Bouncable <|.. AbstractShape
-AbstractShape <|-- Square
+Bouncer <|-- Square
 @enduml
