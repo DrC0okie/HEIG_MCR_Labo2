@@ -9,34 +9,29 @@ skinparam classAttributeIconSize 0
 set separator none
 scale 1.5
 
-'Missing external classes
-'TODO: really useful ?
-class java.awt.Shape
-
 ' Missing associations
-Bouncers "1"->"*" Bouncable: stores >
-Bouncer *-left-"1" java.awt.Shape: uses >
-Util "*"-"1" Display: uses >
+Bouncers "1"-left->"*" Bouncable: stores >
 Bouncer *->"1" Renderer: uses >
 'TODO: should renderer be represented in AbstractShapeFactory ?
 
+' Hidden links to arrange the 3 blocks
+BorderedRenderer$Instance .[hidden]. AbstractShapeFactory
+Displayer -[hidden]up- FilledSquare
+
 ' Post operations
 ' REMOVE
-'TODO: c'est static est-ce qu'il faut vraiment le retirer ?
+
+
+'for Bouncers
 ' .*bouncers: .*<Bouncable>
-' - shape: Shape\n
-
-'TODO: c'est static est-ce qu'il faut vraiment le retirer ?
-' .*display: Display\n
-' .*instance: Display\n
-
-'for bouncer
+'for Bouncer
 ' - renderer: Renderer
 
 ' ENDSTATIC
 
 abstract class Bouncer {
 
+- shape: Shape
 - moveVector: Point2D.Double
 + draw(): void
 + getShape(): Shape
@@ -64,7 +59,7 @@ class BorderedFactory {
 }
 
 
-class BorderedFactory$instance {
+class BorderedFactory$Instance {
 - {static} INSTANCE: BorderedFactory
 }
 
@@ -113,7 +108,6 @@ class FilledRenderer$Instance {
 }
 
 abstract class Circle {
-+ getShape(): Ellipse2D
 + move(): void
 }
 
@@ -169,7 +163,6 @@ class FilledSquare {
 }
 
 abstract class Square {
-+ getShape(): Rectangle2D.Double
 + move(): void
 }
 
@@ -179,6 +172,7 @@ class Util {
 - {static} MAX_SPEED: int
 + {static} REFRESH_RATE: int
 - {static} random: Random
+- {static} display: Display
 + {static} getRandomPoint(): Point2D.Double
 + {static} getRandomMove(): Point2D.Double
 + {static} getRandomSize(): int
@@ -191,7 +185,7 @@ Bouncable <|.. Bouncer
 AbstractShapeFactory <|-- FilledFactory
 FilledFactory +.. FilledFactory$Instance
 AbstractShapeFactory <|-- BorderedFactory
-BorderedFactory +.. BorderedFactory$instance
+BorderedFactory +.. BorderedFactory$Instance
 Square <|-- BorderedSquare
 Circle <|-- FilledCircle
 Renderer <|.. BorderedRenderer
