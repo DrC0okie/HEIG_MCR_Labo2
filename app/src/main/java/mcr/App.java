@@ -11,13 +11,17 @@ import java.awt.event.KeyEvent;
 import java.util.Collection;
 import java.util.LinkedList;
 
+/**
+ * Entry point of the application
+ * @author Samuel Roland, Timothée Van Hove
+ * @version 1.0, april 9 2024
+ */
 public class App {
     private final static int EXIT_KEY = KeyEvent.VK_Q;
     private final static int CLEAR_KEY = KeyEvent.VK_E;
     private final static int ADD_FILLED_KEY = KeyEvent.VK_F;
     private final static int ADD_BORDERED_KEY = KeyEvent.VK_B;
     private final static int ADD_QTY = 10;
-
     private final Collection<Bouncable> bouncers = new LinkedList<>();
 
     public App() {
