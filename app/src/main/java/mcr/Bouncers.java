@@ -16,7 +16,7 @@ import java.util.LinkedList;
  * @author Samuel Roland, Timothée Van Hove
  * @version 1.0, april 9 2024
  */
-public class App {
+public class Bouncers {
     private final static int EXIT_KEY = KeyEvent.VK_Q;
     private final static int CLEAR_KEY = KeyEvent.VK_E;
     private final static int ADD_FILLED_KEY = KeyEvent.VK_F;
@@ -24,7 +24,7 @@ public class App {
     private final static int ADD_QTY = 10;
     private final Collection<Bouncable> bouncers = new LinkedList<>();
 
-    public App() {
+    public Bouncers() {
         Display display = Display.getInstance();
         display.setTitle("Bouncers");
         display.addKeyListener(new KeyAdapter() {
@@ -49,7 +49,7 @@ public class App {
     }
 
     public static void main(String... args) {
-        new App().run();
+        new Bouncers().run();
     }
 
     /**

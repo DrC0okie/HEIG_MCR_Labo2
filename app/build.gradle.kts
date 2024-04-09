@@ -34,7 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass.set("mcr.App")
+    mainClass.set("mcr.Bouncers")
 }
 
 tasks.named<Test>("test") {
