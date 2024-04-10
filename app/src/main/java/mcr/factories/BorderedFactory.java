@@ -11,7 +11,7 @@ import mcr.shapes.Square;
 /**
  * Factory for creating Bordered shapes
  */
-public class BorderedFactory extends AbstractShapeFactory {
+public class BorderedFactory implements AbstractShapeFactory {
     private static final Renderer RENDERER = BorderedRenderer.getInstance();
 
     private static class Instance {

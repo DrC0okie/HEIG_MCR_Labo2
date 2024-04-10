@@ -4,19 +4,19 @@ import mcr.shapes.Circle;
 import mcr.shapes.Square;
 
 /**
- * Abstract factory for creating shapes
+ * Interface of factory for creating shapes
  */
-public abstract class AbstractShapeFactory {
+public interface AbstractShapeFactory {
 
     /**
      * Returns a new square
      * @return a new square
      */
-    public abstract Square createSquare();
+    public Square createSquare();
 
     /**
      * Returns a new circle
      * @return a new circle
      */
-    public abstract Circle createCircle();
+    public Circle createCircle();
 }

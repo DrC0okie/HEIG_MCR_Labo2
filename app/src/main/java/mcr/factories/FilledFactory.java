@@ -11,7 +11,7 @@ import mcr.shapes.Square;
 /**
  * Factory for creating Filled shapes
  */
-public class FilledFactory extends AbstractShapeFactory {
+public class FilledFactory implements AbstractShapeFactory {
     private static final Renderer RENDERER = FilledRenderer.getInstance();
 
     private static class Instance {
