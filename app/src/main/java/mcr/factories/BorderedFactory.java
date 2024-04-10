@@ -18,7 +18,8 @@ public class BorderedFactory implements AbstractShapeFactory {
         private static final BorderedFactory INSTANCE = new BorderedFactory();
     }
 
-    private BorderedFactory() {}
+    private BorderedFactory() {
+    }
 
     /**
      * Get the singleton instance of this class
@@ -34,7 +35,7 @@ public class BorderedFactory implements AbstractShapeFactory {
      */
     @Override
     public Square createSquare() {
-        return new BorderedSquare(Util.getRandomPoint(), Util.getRandomSize(), RENDERER);
+        return new BorderedSquare(RENDERER);
     }
 
     /**
@@ -43,6 +44,6 @@ public class BorderedFactory implements AbstractShapeFactory {
      */
     @Override
     public Circle createCircle() {
-        return new BorderedCircle(Util.getRandomPoint(), Util.getRandomSize(), RENDERER);
+        return new BorderedCircle(RENDERER);
     }
 }

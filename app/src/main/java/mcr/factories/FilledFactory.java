@@ -18,7 +18,8 @@ public class FilledFactory implements AbstractShapeFactory {
         private static final FilledFactory INSTANCE = new FilledFactory();
     }
 
-    private FilledFactory() {}
+    private FilledFactory() {
+    }
 
     public static FilledFactory getInstance() {
         return Instance.INSTANCE;
@@ -26,11 +27,11 @@ public class FilledFactory implements AbstractShapeFactory {
 
     @Override
     public Square createSquare() {
-        return new FilledSquare(Util.getRandomPoint(), Util.getRandomSize(), RENDERER);
+        return new FilledSquare(RENDERER);
     }
 
     @Override
     public Circle createCircle() {
-        return new FilledCircle(Util.getRandomPoint(), Util.getRandomSize(), RENDERER);
+        return new FilledCircle(RENDERER);
     }
 }

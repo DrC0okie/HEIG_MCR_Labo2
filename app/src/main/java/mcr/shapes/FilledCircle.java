@@ -1,15 +1,15 @@
 package mcr.shapes;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
+import mcr.Util;
 import mcr.rendering.Renderer;
 
 /**
  * Represents a circle with a blue fill
  */
 public class FilledCircle extends Circle {
-    public FilledCircle(Point2D.Double position, int size, Renderer renderer) {
-        super(position, size, renderer);
+    public FilledCircle(Renderer renderer) {
+        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), renderer);
     }
 
     /**
