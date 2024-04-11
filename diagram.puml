@@ -12,7 +12,6 @@ scale 1.5
 ' Missing associations
 Bouncers "1"-left->"*" Bouncable: stores >
 Bouncer *->"1" Renderer: uses >
-'TODO: should renderer be represented in AbstractShapeFactory ?
 
 ' Hidden links to arrange the 3 blocks
 BorderedRenderer$Instance .[hidden]. AbstractShapeFactory
@@ -40,24 +39,20 @@ abstract class Bouncer {
 
 
 class FilledFactory {
-- {static} RENDERER: Renderer
 + {static} getInstance(): FilledFactory
 + createSquare(): Square
 + createCircle(): Circle
 }
-
 
 class FilledFactory$Instance {
 - {static} INSTANCE: FilledFactory
 }
 
 class BorderedFactory {
-- {static} RENDERER: Renderer
 + {static} getInstance(): BorderedFactory
 + createSquare(): Square
 + createCircle(): Circle
 }
-
 
 class BorderedFactory$Instance {
 - {static} INSTANCE: BorderedFactory
@@ -93,9 +88,9 @@ class BorderedCircle {
 + getColor(): Color
 }
 
-abstract class AbstractShapeFactory {
-+ {abstract}createSquare(): Square
-+ {abstract}createCircle(): Circle
+interface AbstractShapeFactory {
++ createSquare(): Square
++ createCircle(): Circle
 }
 
 class FilledRenderer {
@@ -182,9 +177,9 @@ class Util {
 
 
 Bouncable <|.. Bouncer
-AbstractShapeFactory <|-- FilledFactory
+AbstractShapeFactory <|.. FilledFactory
 FilledFactory +.. FilledFactory$Instance
-AbstractShapeFactory <|-- BorderedFactory
+AbstractShapeFactory <|.. BorderedFactory
 BorderedFactory +.. BorderedFactory$Instance
 Square <|-- BorderedSquare
 Circle <|-- FilledCircle
