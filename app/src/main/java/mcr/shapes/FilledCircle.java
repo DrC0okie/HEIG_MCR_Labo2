@@ -2,14 +2,14 @@ package mcr.shapes;
 
 import java.awt.*;
 import mcr.Util;
-import mcr.rendering.Renderer;
+import mcr.rendering.FilledRenderer;
 
 /**
  * Represents a circle with a blue fill
  */
 public class FilledCircle extends Circle {
-    public FilledCircle(Renderer renderer) {
-        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), renderer);
+    public FilledCircle() {
+        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), FilledRenderer.getInstance());
     }
 
     /**

@@ -1,8 +1,5 @@
 package mcr.factories;
 
-import mcr.Util;
-import mcr.rendering.BorderedRenderer;
-import mcr.rendering.Renderer;
 import mcr.shapes.BorderedCircle;
 import mcr.shapes.BorderedSquare;
 import mcr.shapes.Circle;
@@ -12,7 +9,6 @@ import mcr.shapes.Square;
  * Factory for creating Bordered shapes
  */
 public class BorderedFactory implements AbstractShapeFactory {
-    private static final Renderer RENDERER = BorderedRenderer.getInstance();
 
     private static class Instance {
         private static final BorderedFactory INSTANCE = new BorderedFactory();
@@ -35,7 +31,7 @@ public class BorderedFactory implements AbstractShapeFactory {
      */
     @Override
     public Square createSquare() {
-        return new BorderedSquare(RENDERER);
+        return new BorderedSquare();
     }
 
     /**
@@ -44,6 +40,6 @@ public class BorderedFactory implements AbstractShapeFactory {
      */
     @Override
     public Circle createCircle() {
-        return new BorderedCircle(RENDERER);
+        return new BorderedCircle();
     }
 }

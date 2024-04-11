@@ -2,14 +2,14 @@ package mcr.shapes;
 
 import java.awt.*;
 import mcr.Util;
-import mcr.rendering.Renderer;
+import mcr.rendering.FilledRenderer;
 
 /**
  * Represents a square with an orange fill
  */
 public class FilledSquare extends Square {
-    public FilledSquare(Renderer renderer) {
-        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), renderer);
+    public FilledSquare() {
+        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), FilledRenderer.getInstance());
     }
 
     /**

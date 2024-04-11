@@ -2,14 +2,14 @@ package mcr.shapes;
 
 import java.awt.*;
 import mcr.Util;
-import mcr.rendering.Renderer;
+import mcr.rendering.BorderedRenderer;
 
 /**
  * Represents a circle with a green border
  */
 public class BorderedCircle extends Circle {
-    public BorderedCircle(Renderer renderer) {
-        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), renderer);
+    public BorderedCircle() {
+        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), BorderedRenderer.getInstance());
     }
 
     /**

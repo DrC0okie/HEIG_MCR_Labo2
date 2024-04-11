@@ -2,14 +2,14 @@ package mcr.shapes;
 
 import java.awt.*;
 import mcr.Util;
-import mcr.rendering.Renderer;
+import mcr.rendering.BorderedRenderer;
 
 /**
  * Represents a square with a red border
  */
 public class BorderedSquare extends Square {
-    public BorderedSquare(Renderer renderer) {
-        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), renderer);
+    public BorderedSquare() {
+        super(Util.getRandomPoint(), Util.getRandomSize(), Util.getRandomMove(), BorderedRenderer.getInstance());
     }
 
     /**
