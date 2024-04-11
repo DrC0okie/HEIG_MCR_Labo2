@@ -1,8 +1,6 @@
 # HEIG_MCR_Labo2
 
-## Brainstorm
+**Schéma final**
 
+![diagram](diagram.svg)
 
-Thread.sleep(20ms ) ok
-
-graphics2d sortir ou pas de la classe ?
